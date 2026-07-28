@@ -1,4 +1,13 @@
-/* Resets básicos */
+/* ================= VARIÁVEIS & RESET ================= */
+:root {
+    --verde-escuro: #1A4321;
+    --verde-primario: #2E7D32;
+    --verde-claro: #81C784;
+    --fundo: #F4F7F6;
+    --texto: #333333;
+    --texto-claro: #666666;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,105 +16,233 @@
 
 html {
     scroll-behavior: smooth;
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f7f6;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto);
 }
 
-/* Cabeçalho */
+h1, h2, h3, .logo {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ================= HEADER NAVBAR ================= */
 header {
-    background-color: #2e7d32;
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-.header-container h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.tagline {
-    font-style: italic;
-    margin-bottom: 20px;
-    color: #e8f5e9;
+.logo {
+    font-size: 1.5rem;
+    color: var(--verde-primario);
+    font-weight: 700;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 25px;
 }
 
 nav a {
-    color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    background-color: #1b5e20;
-    border-radius: 5px;
-    transition: 0.3s;
+    color: var(--texto);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 1rem;
 }
 
 nav a:hover, nav a.active {
-    background-color: #4caf50;
+    color: var(--verde-primario);
+    font-weight: 700;
 }
 
-/* Conteúdo Principal */
-main {
-    max-width: 900px;
-    margin: 30px auto;
+/* ================= HERO SECTION ================= */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(26, 67, 33, 0.7), rgba(46, 125, 50, 0.6)), 
+                url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1920&auto=format&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
     padding: 0 20px;
 }
 
-section {
-    background: white;
-    padding: 30px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.hero-content {
+    max-width: 800px;
+    margin-top: 60px; /* Compensa o menu */
 }
 
-section h2 {
-    color: #2e7d32;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #4caf50;
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.btn-primary {
     display: inline-block;
-    padding-bottom: 5px;
+    padding: 15px 30px;
+    background-color: var(--verde-claro);
+    color: var(--verde-escuro);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 30px;
+    transition: transform 0.3s, background 0.3s;
 }
 
-section p {
-    line-height: 1.6;
+.btn-primary:hover {
+    background-color: white;
+    transform: translateY(-3px);
 }
 
-/* Cards dos Pilares */
+/* ================= MAIN LAYOUT ================= */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+h2 {
+    font-size: 2.2rem;
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--texto-claro);
+}
+
+.text-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+/* ================= SEÇÕES DUPLAS (Texto + Imagem) ================= */
+.secao-dupla {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.secao-dupla.reverse {
+    flex-direction: row-reverse;
+}
+
+.secao-dupla .texto, .secao-dupla .imagem {
+    flex: 1;
+}
+
+.secao-dupla img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    object-fit: cover;
+    max-height: 400px;
+}
+
+/* ================= CARDS DOS PILARES ================= */
 .pilares-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .pilar-item {
-    background: #e8f5e9;
-    padding: 20px;
-    border-left: 4px solid #2e7d32;
-    border-radius: 5px;
-    opacity: 0; /* Preparado para a animação do JS */
-    transform: translateY(20px);
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.pilar-item h3 {
-    color: #1b5e20;
+.pilar-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.pilar-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.pilar-conteudo {
+    padding: 25px;
+}
+
+.pilar-conteudo h3 {
+    color: var(--verde-primario);
+    font-size: 1.3rem;
     margin-bottom: 10px;
 }
 
-/* Rodapé */
+.pilar-conteudo p {
+    font-size: 1rem;
+}
+
+/* ================= FOOTER ================= */
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
+    background-color: var(--verde-escuro);
     color: white;
-    margin-top: 40px;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .secao-dupla, .secao-dupla.reverse {
+        flex-direction: column;
+    }
+    section {
+        padding: 50px 0;
+    }
+}
+
+/* ================= ANIMAÇÕES JS ================= */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
 }
